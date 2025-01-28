@@ -1,0 +1,16 @@
+﻿@model księgarnia_Xardas.Models.Book
+
+@{
+    ViewData["Title"] = "Delete Confirmation";
+}
+
+<h2>Book Deleted</h2>
+
+<div class="alert alert-success mt-4">
+    <h4>The book "<strong>@Model.Title</strong>" by <strong>@Model.Author</strong> has been successfully deleted.</h4>
+</div>
+
+<div class="d-flex justify-content-center mt-5">
+    <a asp-action="Index" class="btn btn-primary mx-2">Back to Books</a>
+    <a asp-action="Create" class="btn btn-success mx-2">Add New Book</a>
+</div>

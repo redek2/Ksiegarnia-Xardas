@@ -1,0 +1,38 @@
+﻿@model księgarnia_Xardas.Models.Book
+
+@{
+    ViewData["Title"] = "Random Book";
+}
+
+<h1>Random Book</h1>
+<p class="text-danger">Here you can take a look at a random book from our bookstore</p>
+
+@if (Model != null)
+{
+    <table class="table table-bordered table-striped table-dark" style="width: 100%; table-layout: fixed; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th style="width: 50%; text-align: center;">Title</th>
+                <th style="width: 50%; text-align: center;">Author</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Title</td>
+                <td>@Model.Author</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <form method="get" action="/Random">
+            <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow-sm">
+                <i class="bi bi-arrow-clockwise"></i> Next Random Book
+            </button>
+        </form>
+    </div>
+}
+else
+{
+    <p class="text-danger">No books found</p>
+}

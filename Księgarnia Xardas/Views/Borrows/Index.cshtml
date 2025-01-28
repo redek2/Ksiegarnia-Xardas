@@ -1,0 +1,39 @@
+﻿@model IEnumerable<księgarnia_Xardas.Models.Borrow>
+
+@{
+    ViewData["Title"] = "My Borrows";
+}
+
+<h2>My Borrows</h2>
+
+<table class="table table-dark table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Book Title</th>
+            <th>Borrow Date</th>
+            <th>Date Due</th>
+            <th>Returned</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var borrow in Model)
+        {
+            <tr>
+                <td>@borrow.Book.Title</td>
+                <td>@borrow.BorrowDate.ToString("yyyy-MM-dd")</td>
+                <td>@(borrow.DateDue?.ToString("yyyy-MM-dd") ?? "N/A")</td>
+                <td>@(borrow.ReturnDate.HasValue ? "Returned" : "Not Returned")</td>
+                <td>
+                    @if (!borrow.ReturnDate.HasValue)
+                    {
+                        <form asp-action="Return" asp-controller="Borrows" method="post">
+                            <input type="hidden" name="id" value="@borrow.Id" />
+                            <button type="submit" class="btn btn-primary">Return</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

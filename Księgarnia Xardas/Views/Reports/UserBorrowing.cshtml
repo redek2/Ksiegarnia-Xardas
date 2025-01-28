@@ -1,0 +1,27 @@
+﻿@model IEnumerable<UserBorrowingReport>
+
+<h1>User Borrows Report</h1>
+
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th class="text-danger">Email</th>
+            <th class="text-danger">Book title</th>
+            <th class="text-danger">Borrow date</th>
+            <th class="text-danger">Return date</th>
+            <th class="text-danger">Return date (final)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td class="text-danger">@user.UserId</td>
+                <td class="text-danger">@user.Title</td>
+                <td class="text-danger">@user.BorrowDate</td>
+                <td class="text-danger">@(user.ReturnDate.HasValue ? user.ReturnDate.Value.ToString("dd-MM-yyyy HH:mm:ss") : "No return")</td>
+                <td class="text-danger">@user.DateDue</td>
+            </tr>
+        }
+    </tbody>
+</table>

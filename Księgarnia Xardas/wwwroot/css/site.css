@@ -1,0 +1,103 @@
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.card {
+    margin: 10px;
+}
+
+.bg-dark-blue {
+    background-color: #3a3a3a !important;
+}
+
+.bg-mybronze {
+    background-color: saddlebrown !important;
+    color: white !important;
+}
+
+/* Stylizacja fokusu */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* Stylizacja pól formularza */
+input.form-control,
+textarea.form-control,
+select.form-control {
+    background-color: #000; /* Czarne t³o */
+    color: #fff; /* Bia³y tekst */
+    border: 1px solid #6c757d; /* Szare obramowanie */
+    border-radius: 5px; /* Zaokr¹glenie rogów */
+}
+
+    /* Styl placeholdera */
+    input.form-control::placeholder,
+    textarea.form-control::placeholder {
+        color: #dc3545 !important; /* Kolor text-danger */
+        opacity: 1; /* Pe³na widocznoœæ tekstu */
+    }
+
+    /* Styl fokusu na polach formularza */
+    input.form-control:focus,
+    textarea.form-control:focus,
+    select.form-control:focus {
+        background-color: #000; /* Czarny przy focus */
+        color: #fff; /* Bia³y tekst */
+        border-color: #dc3545; /* Czerwone obramowanie */
+        box-shadow: 0 0 5px #dc3545; /* Subtelny cieñ w kolorze text-danger */
+        outline: none; /* Usuniêcie domyœlnej ramki */
+    }
+
+/* Styl przycisków */
+button.btn-primary {
+    background-color: #007bff; /* Standardowy niebieski Bootstrap */
+    color: #fff;
+    border: none;
+}
+
+    button.btn-primary:hover {
+        background-color: #0056b3; /* Ciemniejszy niebieski przy najechaniu */
+        color: #fff;
+    }
+
+button.btn-lg {
+    font-size: 1.25rem; /* Wiêkszy tekst w du¿ych przyciskach */
+}
+
+.form-floating .form-control::placeholder {
+    opacity: 0; /* Ukrycie placeholdera w trybie form-floating */
+}
+
+.form-floating .form-label {
+    color: #dc3545; /* Ustaw kolor etykiety na czerwony (text-danger) */
+}
+
+.form-floating .form-control:focus + .form-label {
+    color: #dc3545; /* Podœwietlenie etykiety na czerwono przy focus */
+}

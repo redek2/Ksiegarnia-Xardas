@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Top Borrows";
+}
+
+<div class="row justify-content-center mt-5">
+    <!-- Dodano margines u góry -->
+    @foreach (var book in Model)
+    {
+        <div class="col-4 mb-3
+            @(book.Rank == 1 ? "order-2 mt-3" :
+              (book.Rank == 2 ? "order-1 mt-4" : "order-3 mt-5"))">
+            <!-- Dodano dynamiczne odstępy -->
+            <div class="card shadow-sm" style="border-radius: 15px;">
+                <div class="card-header text-center bg-dark text-light" style="font-size: 1.2rem;">
+                    @if (book.Rank == 1)
+                    {
+                        <span class="badge bg-warning text-dark p-2">First</span>
+                    }
+                    else if (book.Rank == 2)
+                    {
+                        <span class="badge bg-secondary text-light p-2">Second</span>
+                    }
+                    else if (book.Rank == 3)
+                    {
+                        <span class="badge bg-mybronze p-2">Third</span>
+                    }
+                </div>
+                <div class="card-body bg-dark text-light" style="border-radius: 15px 15px 0 0;">
+                    <h5 class="card-title">@book.Title</h5>
+                    <p class="card-text">@book.Author</p>
+                    <p class="card-text">Times Borrowed: @book.BorrowCount</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

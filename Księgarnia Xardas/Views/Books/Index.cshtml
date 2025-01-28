@@ -1,0 +1,56 @@
+﻿@model IEnumerable<księgarnia_Xardas.Models.Book>
+
+@{
+    ViewData["Title"] = "Books";
+}
+
+<h2>Books</h2>
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </p>
+}
+
+<table class="table table-dark table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>Copies Available</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.Genre</td>
+                <td>@book.CopiesAvailable</td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-secondary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@book.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @if (book.CopiesAvailable > 0)
+                        {
+                            <form asp-action="Borrow" method="post">
+                                <input type="hidden" name="id" value="@book.Id" />
+                                <button type="submit" class="btn btn-primary">Borrow</button>
+                            </form>
+                        }
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

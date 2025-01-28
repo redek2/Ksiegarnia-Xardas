@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Księgarnia_Xardas</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column min-vh-100 bg-dark-blue text-danger">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-dark border-bottom shadow-sm">
+            <div class="container">
+                <a class="navbar-brand text-danger fw-bold" asp-area="" asp-controller="Home" asp-action="Index">Księgarnia Xardas</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <!-- Lewa strona nawigacji-->
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" asp-controller="Books" asp-action="Index">Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" asp-controller="Borrows" asp-action="Index">My Borrows</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" asp-controller="Random" asp-action="Index">Random Book</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" asp-controller="TopBorrowed" asp-action="Index">Top Borrowed</a>
+                        </li>
+                    </ul>
+
+                    <!--Prawa strona nawigacji-->
+                    <ul class="navbar-nav ms-auto text-danger">
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <!--Rozwijana lista raportów-->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-danger" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Reports
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end text-danger dropdown-menu-dark" aria-labelledby="adminDropdown">
+                                    <li><a class="dropdown-item" href="/Reports/UserActivity">User Activity</a></li>
+                                    <li><a class="dropdown-item" href="/Reports/UserRegistration">User Registrations</a></li>
+                                    <li><a class="dropdown-item" href="/Reports/UserBorrowing">User Borrows</a></li>
+                                </ul>
+                            </li>
+                        }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-danger" asp-area="Identity" asp-page="/Account/Manage/Index">Hello, @User.Identity.Name!</a>
+                            </li>
+                            <li class="nav-item">
+                                <form class="form-inline text-danger" asp-area="Identity" asp-page="/Account/Logout" method="post" id="logoutForm">
+                                    <button type="submit" class="btn btn-link nav-link text-danger">Logout</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-danger" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-danger" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="container flex-grow-1">
+        <main role="main" class="pb-3 text-center">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="bg-dark text-light py-3 mt-auto">
+        <div class="container text-light text-center">
+            <p class="m-0 text-danger">&copy; 2025 - Księgarnia_Xardas - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

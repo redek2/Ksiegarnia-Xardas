@@ -1,0 +1,27 @@
+﻿@model IEnumerable<UserActivityReport>
+
+<h1>User Activity Report</h1>
+
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th class="text-danger">User Id</th>
+            <th class="text-danger">Email</th>
+            <th class="text-danger">Email confirmed</th>
+            <th class="text-danger">Borrow count</th>
+            <th class="text-danger">Return count</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var report in Model)
+        {
+            <tr>
+                <td class="text-danger">@report.UserId</td>
+                <td class="text-danger">@report.Email</td>
+                <td class="text-danger">@(report.EmailConfirmed ? "Yes" : "No")</td>
+                <td class="text-danger">@report.BorrowCount</td>
+                <td class="text-danger">@report.ReturnCount</td>
+            </tr>
+        }
+    </tbody>
+</table>
